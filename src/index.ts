@@ -23,11 +23,22 @@ const biblioteca: Biblioteca = {
     Direccion: "calle 5 carrera 10",
     Nombre: "Biblioteca1",
     Libros: [{
-
+        
         Autor: "Yuliana",
         AnioPublicacion: 2017,
         Titulo: "Ejemplar"
     }]
+}
+function SolicitarInformacion() {
+    rl.question('Ingrese el título de su libro: ', (Titulo) => {
+        rl.question('Ingrese el autor de su libro: ', (Autor) => {
+            rl.question('Ingrese el año de publicación: ', (AnioPublicacion) => {
+                AgregarLibros(Titulo, Autor, AnioPublicacion);
+
+                menu();
+            });
+        });
+    });
 }
 
 function AgregarLibros(Titulo: string, Autor: string, AnioPublicacionv: string): void {
@@ -41,23 +52,6 @@ function AgregarLibros(Titulo: string, Autor: string, AnioPublicacionv: string):
     } else {
         console.log('Año inválido. Intente de nuevo.');
     }
-}
-
-function SolicitarInformacion() {
-    rl.question('Ingrese el título de su libro: ', (Titulo) => {
-        rl.question('Ingrese el autor de su libro: ', (Autor) => {
-            rl.question('Ingrese el año de publicación: ', (AnioPublicacion) => {
-                AgregarLibros(Titulo, Autor, AnioPublicacion);
-
-                menu();
-            });
-        });
-    });
-}
-
-function Salir() {
-    console.log("Saliendo del programa...");
-    rl.close();
 }
 
 function BucarLibro(): void {
@@ -75,6 +69,7 @@ function BucarLibro(): void {
     });
 }
 
+
 function MostarLibros() {
     console.log('Biblioteca:');
     biblioteca.Libros.forEach(libro => {
@@ -83,15 +78,18 @@ function MostarLibros() {
     menu();
 }
 
+function Salir() {
+    console.log("Saliendo del programa...");
+    rl.close();}
 function menu() {
-    rl.question('Ingrese 1 para agregar libros, 2 para buscar libros, 3 para mirar biblioteca y 4 para salir: ', (opcion) => {
+    rl.question('Ingrese \n1.Agregar libros, \n2.Buscar libros, \n3.Mirar biblioteca \n4.Salir: ', (opcion) => {
         switch (opcion) {
             case '1':
                 SolicitarInformacion();
                 break;
-            case '2':
-                BucarLibro();
-                break;
+                case '2':
+                    BucarLibro();
+                    break;
             case '3':
                 MostarLibros();
                 break;
